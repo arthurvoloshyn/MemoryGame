@@ -6,17 +6,17 @@ export const resultsSlice = createSlice({
     results: [],
   },
   reducers: {
-    savePlayer: (state, action) => ({
+    savePlayer: (state, { payload }) => ({
       ...state,
-      results: [...state.results, action.payload],
+      results: [...state.results, payload],
     }),
   },
 });
 
 export const { savePlayer } = resultsSlice.actions;
 
-export const selectResults = state => state.results.results;
-export const selectSortedResults = state =>
-  state.results.results.slice().sort(({ points: a }, { points: d }) => d - a);
+export const selectResults = ({ results: { results } }) => results;
+export const selectSortedResults = ({ results: { results } }) =>
+  results.slice().sort(({ points: a }, { points: d }) => d - a);
 
 export default resultsSlice.reducer;

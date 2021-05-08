@@ -1,42 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../card/Card';
+import Card from '../Card/Card';
+
 import styles from './Cards.module.css';
 
-export default function Cards({
+const Cards = ({
   cards,
   initialFlipped,
-  selected,
+  selected: { first: firstSelected, second: secondSelected },
   boardSize,
   selectCard,
-}) {
+}) => {
+  const containerStyles = {
+    gridTemplate: `repeat(${boardSize}, 1fr) / repeat(${boardSize}, 1fr)`,
+    height: `calc(${boardSize}*100px)`,
+  };
+
   return (
-    <div
-      className={styles.container}
-      style={{
-        gridTemplate: `repeat(${boardSize}, 1fr) / repeat(${boardSize}, 1fr)`,
-        height: `calc(${boardSize}*100px)`,
-      }}
-    >
+    <div className={styles.container} style={containerStyles}>
       {cards.map((card, i) => {
+        const handleSelectCard = () => selectCard(card, i);
+        const isFlipped =
+          initialFlipped ||
+          firstSelected.index === i ||
+          secondSelected.index === i;
+
         return (
           <Card
             key={`${card}_${i}`}
             isDisabled={card.disabled}
-            isFlipped={
-              initialFlipped ||
-              selected.first.index === i ||
-              selected.second.index === i
-            }
-            selectCard={() => selectCard(card, i)}
+            isFlipped={isFlipped}
+            selectCard={handleSelectCard}
             value={card}
           />
         );
       })}
     </div>
   );
-}
+};
 
 Cards.propTypes = {
   cards: PropTypes.arrayOf(
@@ -63,3 +65,5 @@ Cards.defaultProps = {
   boardSize: 0,
   selectCard: () => {},
 };
+
+export default Cards;

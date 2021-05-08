@@ -39,7 +39,6 @@ export const DEFAULT_CONFIG = {
   wrongAnswerFlipDelay: 1000,
 };
 
-// credits: https://stackoverflow.com/a/6274381
 const shuffleArray = array => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -48,7 +47,7 @@ const shuffleArray = array => {
 };
 
 export const generateCards = size => {
-  const cardsNumber = Number(size);
+  const cardsNumber = +size;
 
   if (Number.isNaN(cardsNumber) || cardsNumber <= 0) {
     throw Error(
@@ -65,7 +64,7 @@ export const generateCards = size => {
   shuffleArray(copyAvailableCards);
 
   const slicedCards = copyAvailableCards.slice(0, size);
-  const duplicatedCards = slicedCards.concat(slicedCards);
+  const duplicatedCards = [...slicedCards, ...slicedCards];
 
   shuffleArray(duplicatedCards);
 

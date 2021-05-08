@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Results from '../../features/results/Results';
+import Results from '../../features/Results/Results';
 
 const Leaderboards = () => (
   <div>

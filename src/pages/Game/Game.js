@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import {
   selectNickname,
   selectPoints,
-} from '../../features/player/playerSlice';
-import Board from '../../features/board/Board';
+} from '../../features/Player/playerSlice';
+import Board from '../../features/Board/Board';
 
 import styles from './Game.module.css';
 

@@ -7,20 +7,21 @@ export const boardSlice = createSlice({
     board: [],
   },
   reducers: {
-    setIsInitialFlipped: (state, action) => ({
+    setIsInitialFlipped: (state, { payload }) => ({
       ...state,
-      isInitialFlipped: action.payload,
+      isInitialFlipped: payload,
     }),
-    setBoard: (state, action) => ({ ...state, board: action.payload }),
+    setBoard: (state, { payload }) => ({ ...state, board: payload }),
   },
 });
 
 export const { setIsInitialFlipped, setBoard } = boardSlice.actions;
 
-export const selectIsInitialFlipped = state => state.board.isInitialFlipped;
-export const selectBoard = state => state.board.board;
-export const selectIsBoardEmpty = state => {
-  const filteredBoard = state.board.board.filter(
+export const selectIsInitialFlipped = ({ board: { isInitialFlipped } }) =>
+  isInitialFlipped;
+export const selectBoard = ({ board: { board } }) => board;
+export const selectIsBoardEmpty = ({ board: { board } }) => {
+  const filteredBoard = board.filter(
     currentCard => typeof currentCard === 'string',
   );
   return filteredBoard.length === 0;

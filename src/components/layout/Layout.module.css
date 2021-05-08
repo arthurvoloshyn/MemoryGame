@@ -14,7 +14,7 @@
 .content {
   background: #fff;
   border-radius: 12px;
-  border-top: 7px solid var(--color2);
+  border-top: 7px solid var(--secondaryColor);
   max-width: 600px;
   padding: 30px;
   width: 100%;

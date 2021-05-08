@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Player from '../../features/player/Player';
+import Player from '../../features/Player/Player';
 
 import styles from './Home.module.css';
 

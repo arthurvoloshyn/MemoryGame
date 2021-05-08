@@ -12,9 +12,9 @@ import {
 import { combineReducers } from 'redux';
 
 import ENV from '../constants/environment';
-import playerReducer from '../features/player/playerSlice';
-import boardReducer from '../features/board/boardSlice';
-import resultsReducer from '../features/results/resultsSlice';
+import playerReducer from '../features/Player/playerSlice';
+import boardReducer from '../features/Board/boardSlice';
+import resultsReducer from '../features/Results/resultsSlice';
 
 export default configureStore({
   reducer: persistReducer(

@@ -1,6 +1,6 @@
-import Leaderboards from '../pages/leaderboards/Leaderboards';
-import Game from '../pages/game/Game';
-import Home from '../pages/home/Home';
+import Leaderboards from '../pages/Leaderboards/Leaderboards';
+import Game from '../pages/Game/Game';
+import Home from '../pages/Home/Home';
 import Error from '../components/Error/Error';
 
 const ROUTES = [

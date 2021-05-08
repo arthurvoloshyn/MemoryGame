@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import styles from './Card.module.css';
 
-export default function Card({ value, isFlipped, selectCard }) {
+const Card = ({ value, isFlipped, selectCard }) => {
+  const isObject = value => typeof value === 'object';
+
   const isRevealed = useMemo(() => {
-    if (typeof value === 'object') {
-      return true;
-    }
+    if (isObject(value)) return true;
 
     return isFlipped;
   }, [isFlipped, value]);
@@ -19,9 +19,8 @@ export default function Card({ value, isFlipped, selectCard }) {
   });
 
   const symbol = useMemo(() => {
-    if (typeof value === 'object') {
-      return value.value;
-    }
+    if (isObject(value)) return value.value;
+
     return value;
   }, [value]);
 
@@ -45,7 +44,7 @@ export default function Card({ value, isFlipped, selectCard }) {
       </animated.div>
     </div>
   );
-}
+};
 
 Card.propTypes = {
   value: PropTypes.oneOfType([
@@ -61,3 +60,5 @@ Card.defaultProps = {
   isFlipped: false,
   selectCard: () => {},
 };
+
+export default Card;

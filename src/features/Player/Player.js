@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './Player.module.css';
 import { setNickname, selectNickname } from './playerSlice';
 
-export default function Player() {
+import styles from './Player.module.css';
+
+const Player = () => {
   const [isNicknameValid, setIsNicknameValid] = useState(false);
   const [isNicknameTouched, setIsNicknameTouched] = useState(false);
   const [nicknameErrorMessage, setNicknameErrorMessage] = useState('');
@@ -13,32 +14,32 @@ export default function Player() {
   const dispatch = useDispatch();
   const cachedNickname = useSelector(selectNickname);
 
-  const validateNickname = e => {
-    const nickname = e.currentTarget.value;
+  const setNicknameSuccessStatus = (valid = true, errorMessage = false) => {
+    setIsNicknameValid(valid);
+    setNicknameErrorMessage(errorMessage);
+  };
+
+  const validateNickname = ({ currentTarget: { value: nickname } }) => {
     setIsNicknameTouched(true);
 
-    if (nickname.length < 3) {
-      setIsNicknameValid(false);
-      setNicknameErrorMessage('Nickname is too short.');
+    const shortNickname = nickname.length < 3;
+    const longNickname = nickname.length > 32;
+
+    if (shortNickname || longNickname) {
+      const errorMessage = shortNickname
+        ? 'Nickname is too short.'
+        : 'Nickname is too long.';
+      setNicknameSuccessStatus(false, errorMessage);
       return;
     }
 
-    if (nickname.length > 32) {
-      setIsNicknameValid(false);
-      setNicknameErrorMessage('Nickname is too long.');
-      return;
-    }
-
-    setIsNicknameValid(true);
-    setIsNicknameTouched(false);
+    setNicknameSuccessStatus();
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!isNicknameValid && isNicknameTouched) {
-      return;
-    }
+    if (!isNicknameValid && isNicknameTouched) return;
 
     const { nickname } = e.currentTarget.elements;
 
@@ -67,4 +68,6 @@ export default function Player() {
       </button>
     </form>
   );
-}
+};
+
+export default Player;

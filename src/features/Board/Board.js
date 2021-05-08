@@ -9,8 +9,8 @@ import {
   clearPoints,
   selectNickname,
   selectPoints,
-} from '../player/playerSlice';
-import { savePlayer } from '../results/resultsSlice';
+} from '../Player/playerSlice';
+import { savePlayer } from '../Results/resultsSlice';
 import {
   selectIsInitialFlipped,
   setIsInitialFlipped,
@@ -19,9 +19,9 @@ import {
   selectIsBoardEmpty,
 } from './boardSlice';
 import { generateCards, DEFAULT_CONFIG } from './Board.utils';
-import Cards from '../../components/cards/Cards';
+import Cards from '../../components/Cards/Cards';
 
-export default function Board({ size, config }) {
+const Board = ({ size, config }) => {
   const board = useSelector(selectBoard);
   const isInitialFlipped = useSelector(selectIsInitialFlipped);
   const isBoardEmpty = useSelector(selectIsBoardEmpty);
@@ -38,23 +38,21 @@ export default function Board({ size, config }) {
   });
 
   const selectCard = (card, index) => {
-    if (selectedCard.first.index === -1 || selectedCard.first.index === index) {
-      setSelectedCard(draft => {
-        draft.first.card = card;
-        draft.first.index = index;
-      });
+    const updateSelectedCard = type =>
+      setSelectedCard(draft => ({
+        ...draft,
+        [type]: { ...draft[type], card, index },
+      }));
+
+    const isSelectCard = type => type.index === -1 || type.index === index;
+    const { first: firstCard, second: secondCard } = selectedCard;
+
+    if (isSelectCard(firstCard)) {
+      updateSelectedCard('first');
       return;
     }
 
-    if (
-      selectedCard.second.index === -1 ||
-      selectedCard.second.index === index
-    ) {
-      setSelectedCard(draft => {
-        draft.second.card = card;
-        draft.second.index = index;
-      });
-    }
+    isSelectCard(secondCard) && updateSelectedCard('second');
   };
 
   const clearSelection = useCallback(() => {
@@ -64,17 +62,18 @@ export default function Board({ size, config }) {
         index: -1,
       };
 
-      draft.first = initialSelectedObject;
-      draft.second = initialSelectedObject;
+      return {
+        ...draft,
+        first: initialSelectedObject,
+        second: initialSelectedObject,
+      };
     });
   }, [setSelectedCard]);
 
   useEffect(() => {
     const { first: firstCard, second: secondCard } = selectedCard;
 
-    if (firstCard.index === -1 || secondCard.index === -1) {
-      return;
-    }
+    if (firstCard.index === -1 || secondCard.index === -1) return;
 
     if (firstCard.card !== secondCard.card) {
       dispatch(addPoints(config.wrongAnswerPoints));
@@ -87,26 +86,30 @@ export default function Board({ size, config }) {
       };
     }
 
-    setCards(draft => {
-      draft[selectedCard.first.index] = {
-        value: selectedCard.first.card,
-        disabled: true,
-      };
-      draft[selectedCard.second.index] = {
-        value: selectedCard.second.card,
-        disabled: true,
-      };
-    });
+    const updateCardByType = type => ({ value: type.card, disabled: true });
+
+    setCards(draft =>
+      [...draft].map((card, index) => {
+        switch (index) {
+          case firstCard.index:
+            return updateCardByType(firstCard);
+          case secondCard.index:
+            return updateCardByType(secondCard);
+          default:
+            return card;
+        }
+      }),
+    );
 
     dispatch(addPoints(config.correctAnswerPoints));
     clearSelection();
   }, [
-    selectedCard,
     dispatch,
     config,
     setCards,
     setSelectedCard,
     clearSelection,
+    selectedCard,
   ]);
 
   useEffect(() => {
@@ -143,7 +146,7 @@ export default function Board({ size, config }) {
       selected={selectedCard}
     />
   );
-}
+};
 
 Board.propTypes = {
   size: PropTypes.number.isRequired,
@@ -158,3 +161,5 @@ Board.propTypes = {
 Board.defaultProps = {
   config: DEFAULT_CONFIG,
 };
+
+export default Board;
