@@ -1,0 +1,21 @@
+.button {
+  background: none;
+  border: 1px solid var(--secondaryColor);
+  border-radius: 12px;
+  color: var(--secondaryColor);
+  cursor: pointer;
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  margin-left: auto;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s ease;
+  width: 150px;
+}
+
+.button:hover {
+  background-color: var(--secondaryColor);
+  color: #fff;
+}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { playerActions, playerSelectors } from '../../../state/ducks/player';
 
 import styles from './Player.module.css';
+import Button from '../../components/Button/Button';
 
 const Player = () => {
   const { selectNickname } = playerSelectors;
@@ -66,9 +67,7 @@ const Player = () => {
       <div className={styles.error}>
         {isNicknameTouched && nicknameErrorMessage}
       </div>
-      <button className={styles.button} type="submit">
-        Start game
-      </button>
+      <Button type="submit">Start game</Button>
     </form>
   );
 };

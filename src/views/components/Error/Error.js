@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+import Button from '../Button/Button';
 
 import styles from './Error.module.css';
 
@@ -10,9 +11,9 @@ const Error = ({ title, description, subTitle }) => (
       {subTitle && <h2 className={styles.subheading}>{subTitle}</h2>}
       <h1 className={styles.heading}>{title}</h1>
       <p className={styles.description}>{description}</p>
-      <Link className={styles.link} to="/">
+      <Button className={styles.link} to="/">
         Go back home
-      </Link>
+      </Button>
     </div>
   </div>
 );

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { resultsSelectors } from '../../../state/ducks/results';
+import Button from '../../components/Button/Button';
 
 import styles from './Results.module.css';
 
@@ -36,6 +37,7 @@ const Leaderboards = () => {
           )}
         </tbody>
       </table>
+      <Button to="/">Reset game</Button>
     </div>
   );
 };
