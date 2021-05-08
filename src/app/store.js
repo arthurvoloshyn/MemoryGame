@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import { combineReducers } from 'redux';
 
+import ENV from '../constants/environment';
 import playerReducer from '../features/player/playerSlice';
 import boardReducer from '../features/board/boardSlice';
 import resultsReducer from '../features/results/resultsSlice';
@@ -32,4 +33,5 @@ export default configureStore({
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  devTools: ENV.IS_DEV,
 });

@@ -6,9 +6,10 @@ export const resultsSlice = createSlice({
     results: [],
   },
   reducers: {
-    savePlayer: (state, action) => {
-      state.results.push(action.payload);
-    },
+    savePlayer: (state, action) => ({
+      ...state,
+      results: [...state.results, action.payload],
+    }),
   },
 });
 
