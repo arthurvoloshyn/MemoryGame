@@ -1,7 +1,7 @@
-import Leaderboards from '../pages/Leaderboards/Leaderboards';
-import Game from '../pages/Game/Game';
-import Home from '../pages/Home/Home';
-import Error from '../components/Error/Error';
+import Leaderboards from '../views/pages/Leaderboards/Leaderboards';
+import Game from '../views/pages/Game/Game';
+import Home from '../views/pages/Home/Home';
+import Error from '../views/components/Error/Error';
 
 const ROUTES = [
   {

@@ -2,10 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import ROUTES from './constants/routes';
-import Layout from './components/layout/Layout';
+import MainLayout from './views/layouts/Main/Main';
 
 const App = () => (
-  <Layout>
+  <MainLayout>
     <Switch>
       {ROUTES.map(({ id, path, exact, component: Component, props }) => (
         <Route key={id} exact={exact} path={path}>
@@ -13,7 +13,7 @@ const App = () => (
         </Route>
       ))}
     </Switch>
-  </Layout>
+  </MainLayout>
 );
 
 export default App;

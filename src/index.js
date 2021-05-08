@@ -8,11 +8,11 @@ import { HashRouter as Router } from 'react-router-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import ENV from './constants/environment';
-import store from './app/store';
+import store from './state/store';
 import App from './App';
-import Preloader from './components/Preloader/Preloader';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import Error from './components/Error/Error';
+import Preloader from './views/components/Preloader/Preloader';
+import ErrorBoundary from './views/components/ErrorBoundary/ErrorBoundary';
+import Error from './views/components/Error/Error';
 
 import './index.css';
 

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter, Route } from 'react-router-dom';
 
-import store from '../app/store';
+import store from '../state/store';
 import App from '../App';
 import { APPLICATION_ROUTES, HOME_INDEX } from './config';
 
