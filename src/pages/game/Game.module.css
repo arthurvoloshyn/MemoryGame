@@ -1,0 +1,10 @@
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
