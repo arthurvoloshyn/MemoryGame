@@ -276,6 +276,7 @@
     "react/jsx-no-literals": "off",
     "react/jsx-no-undef": "error",
     "react/jsx-pascal-case": "error",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-sort-props": "error",
     "react/no-array-index-key": "off",
     "react/no-danger": "error",
