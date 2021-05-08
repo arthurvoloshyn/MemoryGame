@@ -19,3 +19,8 @@
   background-color: var(--secondaryColor);
   color: #fff;
 }
+
+.button:focus {
+  box-shadow: 0 0 0 3px rgba(36, 177, 227, 0.4);
+  outline: none;
+}
