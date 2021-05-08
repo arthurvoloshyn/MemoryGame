@@ -8,8 +8,6 @@ Simple React Memory Game Application
 
 - react ^17.x
 - redux 4.x
-- jest 26.x
-- @testing-library/react 11.x
 
 ### To install
 

@@ -12,10 +12,7 @@
     "react",
     "reactjs",
     "redux",
-    "react-router",
-    "jest",
-    "testing-library",
-    "react-testing-library"
+    "react-router"
   ],
   "author": "Artur Voloshyn (https://github.com/arturw1998)",
   "license": "MIT",
