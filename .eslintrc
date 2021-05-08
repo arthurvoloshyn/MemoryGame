@@ -277,6 +277,7 @@
     "react/jsx-no-undef": "error",
     "react/jsx-pascal-case": "error",
     "react/jsx-sort-props": "error",
+    "react/no-array-index-key": "off",
     "react/no-danger": "error",
     "react/no-did-update-set-state": "error",
     "react/no-multi-comp": "error",
@@ -289,6 +290,7 @@
     "react/sort-comp": "error",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
+    "react/jsx-one-expression-per-line": "off",
     "react/no-did-mount-set-state": "error",
     "react/no-direct-mutation-state": "error",
     "react/jsx-no-bind": ["error", { "allowArrowFunctions": true }],
@@ -310,6 +312,8 @@
 
     "jsx-a11y/anchor-is-valid": "error",
     "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off",
     "jsx-a11y/no-static-element-interactions": "off"
   }
 }

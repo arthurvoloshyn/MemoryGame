@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useSpring, animated } from 'react-spring';
+import PropTypes from 'prop-types';
 
 import styles from './Card.module.css';
 
@@ -45,3 +46,18 @@ export default function Card({ value, isFlipped, selectCard }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ value: PropTypes.string, disabled: PropTypes.bool }),
+  ]),
+  isFlipped: PropTypes.bool,
+  selectCard: PropTypes.func,
+};
+
+Card.defaultProps = {
+  value: '',
+  isFlipped: false,
+  selectCard: () => {},
+};

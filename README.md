@@ -7,14 +7,14 @@ Simple React Memory Game Application
 ### Provides
 
 - react ^17.x
-- react-redux 7.x
+- redux 4.x
 - jest 26.x
 - @testing-library/react 11.x
 
 ### To install
 
-- You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in
-  your system.
+- You'll need to have [git](https://git-scm.com/) and
+  [node](https://nodejs.org/en/) installed in your system.
 
 `git clone https://github.com/ArturW1998/MemoryGame.git`
 
@@ -58,4 +58,5 @@ To run tests using Jest and RTL:
 
 ### Contribute
 
-Please contribute to the project if you know how to make it better, including this README :)
+Please contribute to the project if you know how to make it better, including
+this README :)

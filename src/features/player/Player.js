@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './Player.module.css';
 import { setNickname, selectNickname } from './playerSlice';
 
-export function Player() {
+export default function Player() {
   const [isNicknameValid, setIsNicknameValid] = useState(false);
   const [isNicknameTouched, setIsNicknameTouched] = useState(false);
   const [nicknameErrorMessage, setNicknameErrorMessage] = useState('');
@@ -54,10 +54,10 @@ export function Player() {
       </label>
       <input
         className={styles.input}
-        name="nickname"
-        id="nickname-input"
-        onChange={validateNickname}
         defaultValue={cachedNickname}
+        id="nickname-input"
+        name="nickname"
+        onChange={validateNickname}
       />
       <div className={styles.error}>
         {isNicknameTouched && nicknameErrorMessage}

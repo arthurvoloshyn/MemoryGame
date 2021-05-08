@@ -15,7 +15,7 @@ function App() {
       <Route path="/game">
         <Game />
       </Route>
-      <Route path="/" exact={true}>
+      <Route exact path="/">
         <Home />
       </Route>
     </Layout>

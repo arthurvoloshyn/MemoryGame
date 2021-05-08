@@ -9,8 +9,8 @@ import {
   clearPoints,
   selectNickname,
   selectPoints,
-} from '../../features/player/playerSlice';
-import { savePlayer } from '../../features/results/resultsSlice';
+} from '../player/playerSlice';
+import { savePlayer } from '../results/resultsSlice';
 import {
   selectIsInitialFlipped,
   setIsInitialFlipped,
@@ -81,6 +81,7 @@ export default function Board({ size, config = DEFAULT_CONFIG }) {
 
       const timeoutId = setTimeout(clearSelection, config.wrongAnswerFlipDelay);
 
+      // eslint-disable-next-line consistent-return
       return () => {
         clearTimeout(timeoutId);
       };
@@ -135,11 +136,11 @@ export default function Board({ size, config = DEFAULT_CONFIG }) {
 
   return (
     <Cards
+      boardSize={size / 2}
       cards={cards}
       initialFlipped={isInitialFlipped}
-      boardSize={size / 2}
-      selected={selectedCard}
       selectCard={selectCard}
+      selected={selectedCard}
     />
   );
 }
@@ -151,5 +152,5 @@ Board.propTypes = {
     correctAnswerPoints: PropTypes.number.isRequired,
     initialDelayBeforeFlip: PropTypes.number.isRequired,
     wrongAnswerFlipDelay: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
 };
