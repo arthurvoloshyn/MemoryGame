@@ -32,13 +32,13 @@ export default function Card({ value, isFlipped, selectCard }) {
     >
       <animated.div
         className={`${styles.card} ${styles.front}`}
-        style={{ opacity: opacity.interpolate(o => 1 - o), transform }}
+        style={{ opacity: opacity.to(o => 1 - o), transform }}
       />
       <animated.div
         className={`${styles.card} ${styles.back}`}
         style={{
           opacity,
-          transform: transform.interpolate(t => `${t} rotateX(180deg)`),
+          transform: transform.to(t => `${t} rotateX(180deg)`),
         }}
       >
         {symbol}

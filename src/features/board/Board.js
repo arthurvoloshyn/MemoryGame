@@ -21,7 +21,7 @@ import {
 import { generateCards, DEFAULT_CONFIG } from './Board.utils';
 import Cards from '../../components/cards/Cards';
 
-export default function Board({ size, config = DEFAULT_CONFIG }) {
+export default function Board({ size, config }) {
   const board = useSelector(selectBoard);
   const isInitialFlipped = useSelector(selectIsInitialFlipped);
   const isBoardEmpty = useSelector(selectIsBoardEmpty);
@@ -152,5 +152,9 @@ Board.propTypes = {
     correctAnswerPoints: PropTypes.number.isRequired,
     initialDelayBeforeFlip: PropTypes.number.isRequired,
     wrongAnswerFlipDelay: PropTypes.number.isRequired,
-  }).isRequired,
+  }),
+};
+
+Board.defaultProps = {
+  config: DEFAULT_CONFIG,
 };
