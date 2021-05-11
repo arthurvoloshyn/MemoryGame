@@ -11,19 +11,14 @@ const Player = () => {
   const { selectNickname } = playerSelectors;
   const { setNickname } = playerActions;
 
-  const [isNicknameValid, setIsNicknameValid] = useState(false);
+  const cachedNickname = useSelector(selectNickname);
+  const [nicknameField, setNicknameField] = useState(cachedNickname);
   const [isNicknameTouched, setIsNicknameTouched] = useState(false);
   const [nicknameErrorMessage, setNicknameErrorMessage] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
-  const cachedNickname = useSelector(selectNickname);
 
-  const setNicknameSuccessStatus = (valid = true, errorMessage = false) => {
-    setIsNicknameValid(valid);
-    setNicknameErrorMessage(errorMessage);
-  };
-
-  const validateNickname = ({ currentTarget: { value: nickname } }) => {
+  const validateNickname = nickname => {
     setIsNicknameTouched(true);
 
     const shortNickname = nickname.length < 3;
@@ -33,21 +28,26 @@ const Player = () => {
       const errorMessage = shortNickname
         ? 'Nickname is too short.'
         : 'Nickname is too long.';
-      setNicknameSuccessStatus(false, errorMessage);
-      return;
+      setNicknameErrorMessage(errorMessage);
+      return false;
     }
 
-    setNicknameSuccessStatus();
+    setNicknameErrorMessage(false);
+    return true;
+  };
+
+  const handleChange = ({ target: { value: nickname } }) => {
+    setNicknameField(nickname);
+    validateNickname(nickname);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!isNicknameValid && isNicknameTouched) return;
+    const isNicknameValid = validateNickname(nicknameField);
+    if (!isNicknameValid) return;
 
-    const { nickname } = e.currentTarget.elements;
-
-    dispatch(setNickname(nickname.value));
+    dispatch(setNickname(nicknameField));
 
     history.push('/game');
   };
@@ -59,10 +59,10 @@ const Player = () => {
       </label>
       <input
         className={styles.input}
-        defaultValue={cachedNickname}
         id="nickname-input"
         name="nickname"
-        onChange={validateNickname}
+        onChange={handleChange}
+        value={nicknameField}
       />
       <div className={styles.error}>
         {isNicknameTouched && nicknameErrorMessage}
