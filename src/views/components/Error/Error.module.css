@@ -26,7 +26,7 @@
   background: url('./images/pexels.jpeg') center;
   -webkit-background-clip: text;
   background-size: cover;
-  font-size: 170px;
+  font-size: 100px;
   font-weight: 800;
   letter-spacing: 20px;
   margin: 0;
@@ -52,4 +52,10 @@
 .link:hover {
   background-color: #45145a;
   box-shadow: -5px 5px 20px -5px #010101;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 170px;
+  }
 }
