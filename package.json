@@ -30,7 +30,6 @@
     "react-spring": "^9.1.2",
     "redux": "^4.1.0",
     "redux-persist": "^6.0.0",
-    "use-immer": "^0.5.1",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.3",
     "workbox-broadcast-update": "^5.1.3",
