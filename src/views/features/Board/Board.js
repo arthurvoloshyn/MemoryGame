@@ -39,10 +39,10 @@ const Board = ({ size, config }) => {
 
   const selectCard = (card, index) => {
     const updateSelectedCard = type =>
-      setSelectedCard(draft => ({
-        ...draft,
-        [type]: { ...draft[type], card, index },
-      }));
+      setSelectedCard(draft => {
+        draft[type].card = card;
+        draft[type].index = index;
+      });
 
     const isSelectCard = type => type.index === -1 || type.index === index;
     const { first: firstCard, second: secondCard } = selectedCard;
@@ -62,11 +62,8 @@ const Board = ({ size, config }) => {
         index: -1,
       };
 
-      return {
-        ...draft,
-        first: initialSelectedObject,
-        second: initialSelectedObject,
-      };
+      draft.first = initialSelectedObject;
+      draft.second = initialSelectedObject;
     });
   }, [setSelectedCard]);
 
@@ -88,18 +85,10 @@ const Board = ({ size, config }) => {
 
     const updateCardByType = type => ({ value: type.card, disabled: true });
 
-    setCards(draft =>
-      [...draft].map((card, index) => {
-        switch (index) {
-          case firstCard.index:
-            return updateCardByType(firstCard);
-          case secondCard.index:
-            return updateCardByType(secondCard);
-          default:
-            return card;
-        }
-      }),
-    );
+    setCards(draft => {
+      draft[firstCard.index] = updateCardByType(firstCard);
+      draft[secondCard.index] = updateCardByType(secondCard);
+    });
 
     dispatch(addPoints(config.correctAnswerPoints));
     clearSelection();
