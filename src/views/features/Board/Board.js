@@ -1,8 +1,7 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useImmer } from 'use-immer';
 
 import { DEFAULT_CONFIG } from '../../../constants/broad';
 import generateCards from '../../../utils/board';
@@ -29,10 +28,10 @@ const Board = ({ size, config }) => {
   const points = useSelector(selectPoints);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [cards, setCards] = useImmer(() =>
+  const [cards, setCards] = useState(() =>
     isBoardEmpty ? generateCards(size) : board,
   );
-  const [selectedCard, setSelectedCard] = useImmer({
+  const [selectedCard, setSelectedCard] = useState({
     first: { card: '', index: -1 },
     second: { card: '', index: -1 },
   });
