@@ -7,11 +7,12 @@ export const boardSlice = createSlice({
     board: [],
   },
   reducers: {
-    setIsInitialFlipped: (state, { payload }) => ({
-      ...state,
-      isInitialFlipped: payload,
-    }),
-    setBoard: (state, { payload }) => ({ ...state, board: payload }),
+    setIsInitialFlipped: (state, { payload }) => {
+      state.isInitialFlipped = payload;
+    },
+    setBoard: (state, { payload }) => {
+      state.board = payload;
+    },
   },
 });
 

@@ -7,12 +7,15 @@ export const playerSlice = createSlice({
     points: 0,
   },
   reducers: {
-    addPoints: (state, { payload }) => ({
-      ...state,
-      points: state.points + payload,
-    }),
-    clearPoints: state => ({ ...state, points: 0 }),
-    setNickname: (state, { payload }) => ({ ...state, nickname: payload }),
+    addPoints: (state, { payload }) => {
+      state.points += payload;
+    },
+    clearPoints: state => {
+      state.points = 0;
+    },
+    setNickname: (state, { payload }) => {
+      state.nickname = payload;
+    },
   },
 });
 
